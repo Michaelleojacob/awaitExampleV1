@@ -17,7 +17,7 @@ async function callMultipleDoubles() {
   console.log(`callMultipleDoubles ${sum}`);
   console.log(`callMultipleDoubles ${a} + ${b} + ${c} = ${sum}`);
 }
-callMultipleDoubles();
+// callMultipleDoubles();
 
 async function addAsync(x) {
   const a = await doubleAfterOneSecond(10);
@@ -27,4 +27,19 @@ async function addAsync(x) {
   return x + a + b + c;
 }
 
-addAsync(5);
+// addAsync(5);
+
+async function promiseAllExample() {
+  const a = await Promise.all([
+    doubleAfterOneSecond(2),
+    doubleAfterOneSecond(5),
+    doubleAfterOneSecond(10),
+  ]);
+  console.log(a);
+  const sum = a.reduce((acc, curr) => {
+    return (acc += curr);
+  });
+  console.log(sum);
+}
+
+promiseAllExample();
